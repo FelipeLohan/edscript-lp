@@ -1,0 +1,8 @@
+:host {
+  display: block;
+}
+
+/* Ticker speed override — can be tuned without touching the template */
+ul[class*="animate-ticker-scroll"] {
+  --ticker-duration: 30s;
+}
