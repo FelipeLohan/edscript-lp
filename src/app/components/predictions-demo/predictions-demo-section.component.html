@@ -1,0 +1,44 @@
+<section
+  class="py-section bg-aura-dark overflow-hidden"
+  id="predictions"
+  aria-labelledby="demo-heading"
+>
+  <div class="max-w-6xl mx-auto px-6 md:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <!-- Left: copy -->
+      <div class="flex flex-col gap-6">
+        <aura-badge variant="ai" label="Demo ao Vivo" />
+
+        <h2 id="demo-heading" class="section-title text-4xl md:text-5xl lg:text-6xl">
+          Veja a IA<br>
+          em <span class="text-aura-accent">ação</span>
+        </h2>
+
+        <p class="font-body text-aura-muted text-lg leading-relaxed">
+          Este é um card de previsão ao vivo — exatamente o que você vê no app.
+          O medidor de confiança mostra a certeza do modelo em tempo real.
+        </p>
+
+        <ul class="flex flex-col gap-3" aria-label="Funcionalidades do card de previsão">
+          @for (item of features; track item) {
+            <li class="flex items-center gap-3 font-body text-sm text-aura-muted">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8l3.5 3.5 6.5-7" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              {{ item }}
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Right: Live match card -->
+      <div class="flex justify-center lg:justify-end">
+        <aura-live-match-card
+          [prediction]="mockPrediction"
+          [animateOnEnter]="true"
+        />
+      </div>
+    </div>
+  </div>
+</section>
