@@ -1,0 +1,29 @@
+<section
+  class="py-section bg-aura-surface overflow-hidden"
+  aria-labelledby="social-proof-heading"
+>
+  <div class="max-w-6xl mx-auto px-6 md:px-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="font-body text-aura-accent text-xs uppercase tracking-widest font-semibold mb-3">
+        Os Números Não Mentem
+      </p>
+      <h2 id="social-proof-heading" class="section-title text-4xl md:text-5xl">
+        A Escolha de Apostadores Sérios
+      </h2>
+    </div>
+
+    <!-- Stat counters grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+      @for (counter of counters; track trackByStat($index, counter)) {
+        <aura-stat-card [counter]="counter" [animate]="true" />
+      }
+    </div>
+
+    <!-- Disclaimer -->
+    <p class="text-center font-body text-aura-muted text-xs mt-8 max-w-lg mx-auto">
+      Taxa de acerto medida em todas as previsões publicadas nos últimos 12 meses.
+      Resultados passados não garantem resultados futuros.
+    </p>
+  </div>
+</section>
