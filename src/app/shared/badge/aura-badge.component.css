@@ -1,0 +1,6 @@
+/* AuraBadgeComponent — styles delegated to @layer components in styles.css */
+
+/* AI badge background needs a semi-transparent fill not expressible in @layer components */
+:host aura-badge span.badge-live {
+  background-color: rgba(59, 130, 246, 0.12);
+}

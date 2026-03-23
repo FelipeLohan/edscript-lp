@@ -1,0 +1,16 @@
+<div class="flex flex-col items-center gap-2 p-8 rounded-xl bg-aura-surface">
+  <div class="flex items-baseline gap-1">
+    @if (counter().prefix) {
+      <span class="data-value text-2xl text-aura-accent">{{ counter().prefix }}</span>
+    }
+    <span
+      #valueEl
+      class="data-value text-5xl md:text-6xl font-bold text-aura-accent"
+      aria-live="polite"
+    >0</span>
+    <span class="data-value text-2xl text-aura-accent">{{ counter().suffix }}</span>
+  </div>
+  <p class="font-body text-aura-muted text-sm uppercase tracking-widest text-center">
+    {{ counter().label }}
+  </p>
+</div>

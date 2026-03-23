@@ -1,0 +1,8 @@
+:host {
+  display: block;
+}
+
+/* Confidence bar CSS animation triggered by .confidence-bar-animated class */
+.confidence-bar-animated {
+  animation: confidence-fill 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}

@@ -1,0 +1,4 @@
+/* AuraCardComponent — styles delegated to @layer components in styles.css */
+:host {
+  display: block;
+}

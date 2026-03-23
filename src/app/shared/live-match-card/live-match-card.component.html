@@ -1,0 +1,137 @@
+<div
+  #cardEl
+  class="card-glow p-5 w-full max-w-md"
+  role="region"
+  [attr.aria-label]="prediction().match.homeTeam.name + ' vs ' + prediction().match.awayTeam.name + ' previsão'"
+>
+  <!-- Match Header -->
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center gap-2">
+      <aura-badge variant="live" label="AO VIVO" [pulse]="true" />
+      <span class="font-body text-xs text-aura-muted uppercase tracking-wider">
+        {{ prediction().match.league }}
+      </span>
+    </div>
+    <div class="flex items-center gap-1.5">
+      <aura-badge variant="ai" [label]="prediction().aiTag" />
+    </div>
+  </div>
+
+  <!-- Teams row -->
+  <div class="flex items-center justify-between mb-5">
+    <div class="flex flex-col items-center gap-1 flex-1">
+      <span class="data-value text-xl font-bold text-white">
+        {{ prediction().match.homeTeam.shortCode }}
+      </span>
+      <span class="font-body text-xs text-aura-muted">
+        {{ prediction().match.homeTeam.name }}
+      </span>
+    </div>
+
+    <div class="flex flex-col items-center px-4">
+      @if (prediction().match.status === 'live') {
+        <span class="data-value text-aura-accent text-sm font-bold">
+          {{ prediction().match.minutePlayed }}'
+        </span>
+      }
+      <span class="font-body text-aura-muted text-xs">vs</span>
+    </div>
+
+    <div class="flex flex-col items-center gap-1 flex-1">
+      <span class="data-value text-xl font-bold text-white">
+        {{ prediction().match.awayTeam.shortCode }}
+      </span>
+      <span class="font-body text-xs text-aura-muted">
+        {{ prediction().match.awayTeam.name }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Confidence Meter -->
+  <div class="mb-5">
+    <div class="flex justify-between items-center mb-1.5">
+      <span class="font-body text-xs text-aura-muted uppercase tracking-wider">
+        Confiança da IA
+      </span>
+      <span class="data-value text-aura-accent text-sm font-bold">
+        {{ prediction().confidenceScore }}%
+      </span>
+    </div>
+    <div
+      class="h-2 rounded-full overflow-hidden"
+      style="background-color: rgba(148, 163, 184, 0.15);"
+      role="progressbar"
+      [attr.aria-valuenow]="prediction().confidenceScore"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [attr.aria-label]="'Confiança: ' + prediction().confidenceScore + '%'"
+    >
+      <div
+        class="h-full rounded-full bg-aura-accent transition-none"
+        [class.confidence-bar-animated]="confidenceVisible()"
+        [style.width]="confidenceVisible() ? prediction().confidenceScore + '%' : '0%'"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Odds Row -->
+  <div class="grid grid-cols-3 gap-2 mb-5" role="group" aria-label="Odds da partida">
+    <div
+      class="flex flex-col items-center gap-1 p-2 rounded-lg border transition-colors"
+      [class.border-aura-accent]="isHighlightedOutcome('home')"
+      [class.border-transparent]="!isHighlightedOutcome('home')"
+      [style.background-color]="isHighlightedOutcome('home') ? 'rgba(34,197,94,0.1)' : 'rgba(148,163,184,0.06)'"
+    >
+      <span class="font-body text-xs text-aura-muted">Casa</span>
+      <span class="data-value text-sm font-bold text-white">
+        {{ formatOddsValue(prediction().odds.home) }}
+      </span>
+    </div>
+
+    @if (prediction().odds.draw !== undefined) {
+      <div
+        class="flex flex-col items-center gap-1 p-2 rounded-lg border transition-colors"
+        [class.border-aura-accent]="isHighlightedOutcome('draw')"
+        [class.border-transparent]="!isHighlightedOutcome('draw')"
+        [style.background-color]="isHighlightedOutcome('draw') ? 'rgba(34,197,94,0.1)' : 'rgba(148,163,184,0.06)'"
+      >
+        <span class="font-body text-xs text-aura-muted">Empate</span>
+        <span class="data-value text-sm font-bold text-white">
+          {{ formatOddsValue(prediction().odds.draw!) }}
+        </span>
+      </div>
+    } @else {
+      <div></div>
+    }
+
+    <div
+      class="flex flex-col items-center gap-1 p-2 rounded-lg border transition-colors"
+      [class.border-aura-accent]="isHighlightedOutcome('away')"
+      [class.border-transparent]="!isHighlightedOutcome('away')"
+      [style.background-color]="isHighlightedOutcome('away') ? 'rgba(34,197,94,0.1)' : 'rgba(148,163,184,0.06)'"
+    >
+      <span class="font-body text-xs text-aura-muted">Fora</span>
+      <span class="data-value text-sm font-bold text-white">
+        {{ formatOddsValue(prediction().odds.away) }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="flex flex-col gap-2" role="list" aria-label="Estatísticas da partida">
+    @for (stat of prediction().stats; track trackByStat($index, stat)) {
+      <div
+        class="grid grid-cols-3 items-center text-center gap-2"
+        role="listitem"
+      >
+        <span class="data-value text-sm font-semibold text-white">
+          {{ stat.homeValue }}{{ stat.unit ?? '' }}
+        </span>
+        <span class="font-body text-xs text-aura-muted">{{ stat.label }}</span>
+        <span class="data-value text-sm font-semibold text-white">
+          {{ stat.awayValue }}{{ stat.unit ?? '' }}
+        </span>
+      </div>
+    }
+  </div>
+</div>
