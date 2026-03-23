@@ -78,4 +78,12 @@ export class HeroSectionComponent {
   trackByMatch(_index: number, match: MatchData): string {
     return match.id;
   }
+
+  scrollToCta(): void {
+    document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  scrollToHowItWorks(): void {
+    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
+  }
 }
