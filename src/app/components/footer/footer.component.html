@@ -4,10 +4,10 @@
   aria-label="Rodapé do site"
 >
   <div class="max-w-6xl mx-auto px-6 md:px-12 py-12">
-    <!-- Top row: logo + nav -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-10">
+    <!-- Top row: logo + responsible gambling -->
+    <div class="flex flex-col md:flex-row md:items-start gap-8 mb-8">
       <!-- Logo -->
-      <a href="#top" aria-label="Aura Bet — voltar ao topo">
+      <a href="#top" aria-label="Aura Bet — voltar ao topo" class="flex-shrink-0">
         <img
           src="assets/Brand.png"
           alt="Aura Bet"
@@ -17,73 +17,53 @@
         >
       </a>
 
-      <!-- Navigation -->
-      <nav aria-label="Navegação do rodapé">
-        <ul class="flex flex-wrap gap-x-6 gap-y-2">
-          @for (link of navLinks; track trackByLink($index, link)) {
-            <li>
-              <a
-                [href]="link.href"
-                [attr.target]="link.external ? '_blank' : null"
-                [attr.rel]="link.external ? 'noopener noreferrer' : null"
-                class="font-body text-sm text-aura-muted transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aura-accent rounded"
-              >
-                {{ link.label }}
-              </a>
-            </li>
-          }
-        </ul>
-      </nav>
+      <!-- Responsible Gambling Notice -->
+      <div role="note" aria-label="Aviso sobre jogo responsável">
+        <p class="font-body text-aura-muted text-sm leading-relaxed">
+          <strong class="text-white font-semibold">Jogo Responsável.</strong>
+          Apostar deve ser um entretenimento, não uma fonte de renda. Nunca aposte mais do que pode perder.
+          Se sentir que as apostas estão afetando sua vida negativamente, entre em contato com o
+          <a
+            href="https://www.begambleaware.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white underline hover:text-aura-accent rounded"
+            aria-label="BeGambleAware — recurso externo de jogo responsável"
+          >BeGambleAware</a>
+          ou ligue para a Central de Apoio ao Apostador:
+          <a
+            href="tel:08088020133"
+            class="text-white underline hover:text-aura-accent rounded"
+            aria-label="Ligar para a Central de Apoio: 0808 802 0133"
+          >0808 802 0133</a>.
+          Apenas para maiores de 18 anos. Aposte com responsabilidade.
+        </p>
+      </div>
     </div>
 
-    <!-- Social links -->
-    <div class="flex gap-4 mb-10" aria-label="Redes sociais">
-      @for (social of socialLinks; track trackByLink($index, social)) {
-        <a
-          [href]="social.href"
-          target="_blank"
-          rel="noopener noreferrer"
-          [attr.aria-label]="social.label"
-          class="w-9 h-9 flex items-center justify-center rounded-lg font-body text-xs text-aura-muted transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aura-accent"
-          style="background-color: rgba(148,163,184,0.08); border: 1px solid rgba(148,163,184,0.1);"
-        >
-          {{ social.label[0] }}
-        </a>
-      }
-    </div>
-
-    <!-- Responsible Gambling Notice -->
+    <!-- Bottom row: social + copyright -->
     <div
-      class="pt-6 mb-8"
+      class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-6"
       style="border-top: 1px solid rgba(148,163,184,0.1);"
-      role="note"
-      aria-label="Aviso sobre jogo responsável"
     >
-      <p class="font-body text-aura-muted text-sm leading-relaxed max-w-3xl">
-        <strong class="text-white font-semibold">Jogo Responsável.</strong>
-        Apostar deve ser um entretenimento, não uma fonte de renda. Nunca aposte mais do que pode perder.
-        Se sentir que as apostas estão afetando sua vida negativamente, entre em contato com o
-        <a
-          href="https://www.begambleaware.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-white underline hover:text-aura-accent focus-visible:ring-2 focus-visible:ring-aura-accent rounded"
-          aria-label="BeGambleAware — recurso externo de jogo responsável"
-        >BeGambleAware</a>
-        ou ligue para a Central de Apoio ao Apostador:
-        <a
-          href="tel:08088020133"
-          class="text-white underline hover:text-aura-accent focus-visible:ring-2 focus-visible:ring-aura-accent rounded"
-          aria-label="Ligar para a Central de Apoio: 0808 802 0133"
-        >0808 802 0133</a>.
-        Apenas para maiores de 18 anos. Aposte com responsabilidade.
+      <p class="font-body text-aura-muted text-xs">
+        &copy; {{ year }} Aura Bet. Todos os direitos reservados.
       </p>
-    </div>
 
-    <!-- Copyright -->
-    <p class="font-body text-aura-muted text-xs">
-      &copy; {{ year }} Aura Bet. Todos os direitos reservados.
-      Aura Bet é uma marca registrada. As previsões são apenas para fins de entretenimento.
-    </p>
+      <div class="flex gap-3" aria-label="Redes sociais">
+        @for (social of socialLinks; track trackByLink($index, social)) {
+          <a
+            [href]="social.href"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="social.label"
+            class="w-9 h-9 flex items-center justify-center rounded-lg font-body text-xs text-aura-muted transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aura-accent"
+            style="background-color: rgba(148,163,184,0.08); border: 1px solid rgba(148,163,184,0.1);"
+          >
+            {{ social.label[0] }}
+          </a>
+        }
+      </div>
+    </div>
   </div>
 </footer>
