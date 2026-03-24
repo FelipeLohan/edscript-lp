@@ -1,1 +1,8 @@
-/* AuraButtonComponent — styles delegated entirely to @layer components in styles.css */
+:host {
+  display: inline-flex;
+}
+
+button,
+a {
+  flex: 1;
+}

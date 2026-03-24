@@ -4,9 +4,11 @@ import {
   input,
   output,
 } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'aura-button',
+  imports: [NgTemplateOutlet],
   templateUrl: './aura-button.component.html',
   styleUrl: './aura-button.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,6 +19,8 @@ export class AuraButtonComponent {
   disabled = input(false);
   ariaLabel = input<string | undefined>(undefined);
   type = input<'button' | 'submit'>('button');
+  href = input<string | undefined>(undefined);
+  target = input<string | undefined>(undefined);
 
   clicked = output<MouseEvent>();
 
